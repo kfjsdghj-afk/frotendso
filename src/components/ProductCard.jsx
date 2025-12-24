@@ -4,9 +4,20 @@ import { addToCart } from "../redux/cartSlice";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product._id || product.id,   // ✅ normalize ID
+        name: product.name,
+        price: product.price,
+        image: product.image
+      })
+    );
+  };
+
   return (
     <button
-      onClick={() => dispatch(addToCart(product))}
+      onClick={handleAddToCart}
       className="
         w-full
         bg-blue-600
